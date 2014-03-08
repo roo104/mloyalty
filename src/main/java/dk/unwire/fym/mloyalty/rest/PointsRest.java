@@ -30,16 +30,16 @@ public class PointsRest {
 	@Path("points/{userId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getBalance(@PathParam("userId") long userId) {
-		Balance balance = balanceService.getPointBalance(userId);
+		Balance balance = this.balanceService.getPointBalance(userId);
 		return Response.status(HttpResponseCodes.SC_OK).entity(balance).build();
 	}
-	
+
 	@RolesAllowed("MERCHANT")
 	@PUT
 	@Path("points/{userId}/{points}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addPoints(@PathParam("userId") long userId, @PathParam("points") long points) {
-		pointService.addPoints(userId, points);
+		this.pointService.addPoints(userId, points);
 		return Response.status(HttpResponseCodes.SC_OK).entity(null).build();
 	}
 
