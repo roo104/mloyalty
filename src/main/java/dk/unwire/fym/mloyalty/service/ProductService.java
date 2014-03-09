@@ -7,4 +7,6 @@ import dk.unwire.fym.mloyalty.model.Product;
 public interface ProductService {
 
 	public List<Product> getProductsByMerchant(long merchantId);
+	
+	public Product getProduct(long productId);
 }

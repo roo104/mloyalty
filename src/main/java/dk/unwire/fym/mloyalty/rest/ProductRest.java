@@ -30,4 +30,13 @@ public class ProductRest {
 		List<Product> products = productService.getProductsByMerchant(merchantId);
 		return Response.status(HttpResponseCodes.SC_OK).entity(products).build();
 	}
+	
+	@PermitAll
+	@GET
+	@Path("product/{productId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProduct(@PathParam("productId") long productId) {
+		Product product = productService.getProduct(productId);
+		return Response.status(HttpResponseCodes.SC_OK).entity(product).build();
+	}
 }

@@ -3,6 +3,7 @@ package dk.unwire.fym.mloyalty.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -21,4 +22,17 @@ public class ProductDaoImpl implements ProductDao {
 		return query.getResultList();
 	}
 
+	@Override
+	public Product getProduct(long productId) {
+		Object result = null;
+		try {
+			Query query = this.entityManager.createNativeQuery("SELECT * FROM product WHERE id = ?", Product.class);
+			query.setParameter(1, productId);
+			result = query.getSingleResult();
+		} catch (NoResultException e) {
+			
+		}
+		
+		return (Product) result;
+	}
 }

@@ -9,8 +9,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 
 /**
- * This class will make sure Json timestamps is written in the format yyyy-mm-dd'T'hh:MM:ss'Z' 
- * @author Jonas Pedersen
+ * This class will make sure JSON timestamps is written in the format yyyy-MM-dd'T'hh:mm:ss'Z' 
  *
  */
 
@@ -30,5 +29,4 @@ public class JacksonConfig implements ContextResolver<ObjectMapper> {
 	public ObjectMapper getContext(Class<?> objectType)	{
 		return objectMapper;
 	}
-
 }
