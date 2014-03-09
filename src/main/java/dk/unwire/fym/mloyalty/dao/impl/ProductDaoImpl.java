@@ -2,6 +2,7 @@ package dk.unwire.fym.mloyalty.dao.impl;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -10,6 +11,7 @@ import javax.persistence.Query;
 import dk.unwire.fym.mloyalty.dao.ProductDao;
 import dk.unwire.fym.mloyalty.model.Product;
 
+@Stateless
 public class ProductDaoImpl implements ProductDao {
 	
 	@PersistenceContext(unitName = "mloyalty")
