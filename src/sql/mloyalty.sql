@@ -16,6 +16,23 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`mloyalty` /*!40100 DEFAULT CHARACTER SE
 
 USE `mloyalty`;
 
+/*Table structure for table `account` */
+
+DROP TABLE IF EXISTS `account`;
+
+CREATE TABLE `account` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `balance` bigint(20) NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_qc7yw9e8rjb74ql6jmygv90se` (`user_id`),
+  CONSTRAINT `FK_qc7yw9e8rjb74ql6jmygv90se` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `account` */
+
+insert  into `account`(`id`,`balance`,`user_id`) values (1,0,1);
+
 /*Table structure for table `merchant` */
 
 DROP TABLE IF EXISTS `merchant`;
@@ -38,8 +55,8 @@ DROP TABLE IF EXISTS `point`;
 
 CREATE TABLE `point` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
   `points` bigint(20) NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_dc207fihfo1l7xluv3pjgu2x8` (`user_id`),
   CONSTRAINT `FK_dc207fihfo1l7xluv3pjgu2x8` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
@@ -47,7 +64,7 @@ CREATE TABLE `point` (
 
 /*Data for the table `point` */
 
-insert  into `point`(`id`,`user_id`,`points`) values (1,1,100),(2,1,100),(3,1,100),(4,1,100),(5,1,100),(6,1,100),(7,1,100),(8,1,100);
+insert  into `point`(`id`,`points`,`user_id`) values (1,100,1),(2,100,1),(3,100,1),(4,100,1),(5,100,1),(6,100,1),(7,100,1),(8,100,1);
 
 /*Table structure for table `product` */
 
@@ -73,15 +90,18 @@ DROP TABLE IF EXISTS `redemption`;
 CREATE TABLE `redemption` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `product_id` bigint(20) DEFAULT NULL,
+  `points` bigint(20) NOT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_bysvscrxx5aufw04qdfx6xgwk` (`product_id`),
   KEY `FK_dee4j7s5hcxaovstt9nt8rc6e` (`user_id`),
   CONSTRAINT `FK_bysvscrxx5aufw04qdfx6xgwk` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   CONSTRAINT `FK_dee4j7s5hcxaovstt9nt8rc6e` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `redemption` */
+
+insert  into `redemption`(`id`,`product_id`,`points`,`user_id`) values (1,1,50,1);
 
 /*Table structure for table `user` */
 
@@ -92,6 +112,7 @@ CREATE TABLE `user` (
   `merchant_id` bigint(20) DEFAULT NULL,
   `identifier` varchar(255) DEFAULT NULL,
   `identifierType` varchar(255) DEFAULT NULL,
+  `balance` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_6li1npptiqaolnystaxt5jamu` (`merchant_id`),
   CONSTRAINT `FK_6li1npptiqaolnystaxt5jamu` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`id`)
@@ -99,7 +120,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`merchant_id`,`identifier`,`identifierType`) values (1,1,'4551967719','MSISDN');
+insert  into `user`(`id`,`merchant_id`,`identifier`,`identifierType`,`balance`) values (1,1,'4551967719','MSISDN',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

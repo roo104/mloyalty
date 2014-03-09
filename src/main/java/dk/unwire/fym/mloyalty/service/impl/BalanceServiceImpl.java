@@ -10,14 +10,12 @@ import dk.unwire.fym.mloyalty.service.BalanceService;
 public class BalanceServiceImpl implements BalanceService {
 	
 	@Inject
-	private PointDao pointDao;
-	@Inject
 	private UserDao userDao;
 
 	@Override
-	public Balance getPointBalance(long userId) {
+	public Balance getUserBalance(long userId) {
 		Balance balance = new Balance();
-		balance.setBalance(pointDao.getBalance(userId));
+		balance.setBalance(userDao.getBalance(userId));
 		balance.setUser(userDao.getUserById(userId));
 		return balance;
 	}

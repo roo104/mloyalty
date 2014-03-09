@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 public class Point implements Serializable {
 
@@ -15,6 +17,7 @@ public class Point implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private long points;
+	@JsonIgnore
 	@OneToOne
 	private User user;
 	
@@ -36,6 +39,4 @@ public class Point implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
 }

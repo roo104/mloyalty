@@ -16,12 +16,6 @@ public class PointServiceImpl implements PointService {
 	
 	@Override
 	public void addPoints(long userId, long points) {
-		User user = new User();
-		user.setId(userId);
-		Point point = new Point();
-		point.setPoints(points);
-		point.setUser(user);
-		pointDao.addPoints(point);
 	}
 
 }

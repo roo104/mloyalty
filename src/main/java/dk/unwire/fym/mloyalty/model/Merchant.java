@@ -19,7 +19,7 @@ public class Merchant implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="merchant_id")
 	private List<Product> products;
 	private String name;

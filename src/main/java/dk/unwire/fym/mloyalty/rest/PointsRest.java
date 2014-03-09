@@ -30,7 +30,7 @@ public class PointsRest {
 	@Path("points/{userId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getBalance(@PathParam("userId") long userId) {
-		Balance balance = this.balanceService.getPointBalance(userId);
+		Balance balance = this.balanceService.getUserBalance(userId);
 		return Response.status(HttpResponseCodes.SC_OK).entity(balance).build();
 	}
 

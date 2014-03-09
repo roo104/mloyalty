@@ -1,6 +1,5 @@
 package dk.unwire.fym.mloyalty.dao.impl;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -25,20 +24,7 @@ public class PointDaoImpl implements PointDao {
 	}
 
 	@Override
-	public long getBalance(long userId) {
-		long balance = 0;
-		Query query = this.entityManager.createNativeQuery("SELECT sum(points) FROM point WHERE user_id = ?");
-		query.setParameter(1, userId);
-		Object result = query.getSingleResult();
-		if (result != null) {
-			balance = ((BigDecimal) result).longValue();
-		}
-
-		return balance;
-	}
-
-	@Override
-	public void addPoints(Point point) {
+	public void addPoint(Point point) {
 		this.entityManager.persist(point);
 	}
 

@@ -8,7 +8,6 @@ public interface PointDao {
 
 	public List<Point> getByUser(long userId);
 	
-	public long getBalance(long userId);
+	public void addPoint(Point point);
 	
-	public void addPoints(Point point);
 }
