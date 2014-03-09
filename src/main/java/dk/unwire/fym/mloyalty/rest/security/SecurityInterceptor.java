@@ -25,7 +25,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import dk.unwire.fym.mloyalty.dao.MerchantDao;
+import dk.unwire.fym.mloyalty.dao.UserDao;
 import dk.unwire.fym.mloyalty.model.Merchant;
+import dk.unwire.fym.mloyalty.model.User;
 
 @Provider
 public class SecurityInterceptor implements ContainerRequestFilter {
@@ -41,6 +43,8 @@ public class SecurityInterceptor implements ContainerRequestFilter {
 
 	@Inject
 	private MerchantDao merchantDao;
+	@Inject
+	private UserDao userDao;
 
 	@Override
 	public void filter(ContainerRequestContext containerRequestContext) throws IOException {
@@ -97,24 +101,21 @@ public class SecurityInterceptor implements ContainerRequestFilter {
 	private boolean isUserAllowed(final String username, final String password, final Set<String> rolesSet) {
 		boolean isAllowed = false;
 
-		Merchant merchant = this.merchantDao.getMerchantByUsernameAndPassword(username, password);
+		String role = rolesSet.iterator().next();
+		if (Roles.END_USER.equals(role)) {
+			User user = userDao.getUserByIdentifierAndPassword(username, password);
+			
+			if (user != null) {
+				isAllowed = true;
+			}
+		} else if (Roles.MERCHANT.equals(role)) {
+			Merchant merchant = this.merchantDao.getMerchantByUsernameAndPassword(username, password);
 
-		if (merchant != null) {
-			isAllowed = true;
+			if (merchant != null) {
+				isAllowed = true;
+			}
 		}
 
-		// Step 1. Fetch password from database and match with password in
-		// argument
-		// If both match then get the defined role for user from database and
-		// continue; else return isAllowed [false]
-		// Access the database and do this part yourself
-		// String userRole = userMgr.getUserRole(username);
-		// String userRole = "MERCHANT";
-
-		// Step 2. Verify user role
-		// if (rolesSet.contains(userRole)) {
-		// isAllowed = true;
-		// }
 		return isAllowed;
 	}
 

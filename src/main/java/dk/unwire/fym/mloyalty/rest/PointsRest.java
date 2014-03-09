@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.util.HttpResponseCodes;
 
+import dk.unwire.fym.mloyalty.rest.security.Roles;
 import dk.unwire.fym.mloyalty.service.PointService;
 
 @Path("/")
@@ -19,7 +20,7 @@ public class PointsRest {
 	@Inject
 	private PointService pointService;
 
-	@RolesAllowed("MERCHANT")
+	@RolesAllowed(Roles.MERCHANT)
 	@PUT
 	@Path("points/{userId}/{points}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -27,5 +28,4 @@ public class PointsRest {
 		this.pointService.addPoints(userId, points);
 		return Response.status(HttpResponseCodes.SC_OK).entity(null).build();
 	}
-
 }

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -45,6 +46,21 @@ public class UserDaoImpl implements UserDao {
 		query.setParameter(1, userId);
 		query.setParameter(2, userId);
 		return ((BigDecimal ) query.getSingleResult()).longValue();
+	}
+
+	@Override
+	public User getUserByIdentifierAndPassword(String identifier,
+			String password) {
+		Object result = null;
+		try {
+			Query query = entityManager.createNativeQuery("SELECT * FROM `user` WHERE `identifier` = ? AND `password` = SHA1(?)", User.class);
+			query.setParameter(1, identifier);
+			query.setParameter(2, password);
+			result = query.getSingleResult();
+		} catch (NoResultException e) {
+			
+		}
+		return (User) result;
 	}
 
 }

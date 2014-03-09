@@ -7,4 +7,6 @@ public interface UserDao {
 	public User getUserById(long userId);
 	
 	public long getBalance(long userId);
+	
+	public User getUserByIdentifierAndPassword(String identifier, String password);
 }

@@ -1,6 +1,6 @@
 package dk.unwire.fym.mloyalty.rest;
 
-import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,6 +13,7 @@ import org.jboss.resteasy.util.HttpResponseCodes;
 
 import dk.unwire.fym.mloyalty.dao.UserDao;
 import dk.unwire.fym.mloyalty.model.User;
+import dk.unwire.fym.mloyalty.rest.security.Roles;
 
 @Path("/")
 public class UserRest {
@@ -20,7 +21,7 @@ public class UserRest {
 	@Inject
 	private UserDao userDao;
 
-	@PermitAll
+	@RolesAllowed(Roles.END_USER)
 	@GET
 	@Path("user/{userId}")
 	@Produces(MediaType.APPLICATION_JSON)
