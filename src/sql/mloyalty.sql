@@ -109,7 +109,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`merchant_id`,`identifier`,`identifierType`,`password`,`creationDate`) values (1,1,'4551967719','MSISDN',NULL,'2014-03-06 20:26:52');
+insert  into `user`(`id`,`merchant_id`,`identifier`,`identifierType`,`password`,`creationDate`) values (1,1,'4551967719','MSISDN','9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684','2014-03-06 20:26:52');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
