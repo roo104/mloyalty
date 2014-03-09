@@ -8,6 +8,12 @@ import javax.ws.rs.ext.Provider;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 
+/**
+ * This class will make sure Json timestamps is written in the format yyyy-mm-dd'T'hh:MM:ss'Z' 
+ * @author Jonas Pedersen
+ *
+ */
+
 @Provider
 @Produces(MediaType.APPLICATION_JSON)
 public class JacksonConfig implements ContextResolver<ObjectMapper> {
