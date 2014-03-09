@@ -1,6 +1,7 @@
 package dk.unwire.fym.mloyalty.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,6 +24,7 @@ public class Redemption implements Serializable {
 	@JsonIgnore
 	@OneToOne
 	private User user;
+	private Date redemptionDate;
 	
 	public long getId() {
 		return id;
@@ -47,6 +49,12 @@ public class Redemption implements Serializable {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public Date getRedemptionDate() {
+		return redemptionDate;
+	}
+	public void setRedemptionDate(Date redemptionDate) {
+		this.redemptionDate = redemptionDate;
 	}
 	
 }

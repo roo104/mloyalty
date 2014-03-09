@@ -1,6 +1,7 @@
 package dk.unwire.fym.mloyalty.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,8 @@ public class Point implements Serializable {
 	@OneToOne
 	private User user;
 	
+	private Date dateAdded;
+	
 	public long getId() {
 		return id;
 	}
@@ -38,5 +41,11 @@ public class Point implements Serializable {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public Date getDateAdded() {
+		return dateAdded;
+	}
+	public void setDateAdded(Date dateAdded) {
+		this.dateAdded = dateAdded;
 	}
 }

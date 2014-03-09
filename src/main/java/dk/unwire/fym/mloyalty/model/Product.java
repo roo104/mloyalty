@@ -1,6 +1,7 @@
 package dk.unwire.fym.mloyalty.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,9 @@ public class Product implements Serializable {
 	@ManyToOne()
 	private Merchant merchant;
 	private String name;
+	private long costInPoints;
+	private Date startDate;
+	private Date endDate;
 	
 	public long getId() {
 		return id;
@@ -43,5 +47,29 @@ public class Product implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public long getCostInPoints() {
+		return costInPoints;
+	}
+
+	public void setCostInPoints(long costInPoints) {
+		this.costInPoints = costInPoints;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 }

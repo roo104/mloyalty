@@ -23,7 +23,13 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-jaxrs</artifactId>
-			<version>1.9.12</version>
+			<version>1.9.13</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.6.Final</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -39,11 +45,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>3.5.0-Final</version>
-            <scope>provided</scope>
-        </dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.5.0-Final</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>mloyalty</finalName>

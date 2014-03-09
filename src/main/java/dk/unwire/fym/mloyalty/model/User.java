@@ -1,6 +1,7 @@
 package dk.unwire.fym.mloyalty.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -24,17 +25,26 @@ public class User implements Serializable	 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	
 	@JsonIgnore
 	@OneToOne
 	private Merchant merchant;
+	
 	private String identifier;
+	
 	@Enumerated(EnumType.STRING)
 	private IdentifierType identifierType;
-	private long balance;
+	
+	@JsonIgnore
+	private String password;
+	
+	private Date creationDate;
+	
 	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	@Fetch(FetchMode.SELECT)
 	private List<Point> points;
+	
 	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	@Fetch(FetchMode.SELECT)
@@ -64,11 +74,20 @@ public class User implements Serializable	 {
 	public void setIdentifierType(IdentifierType identifierType) {
 		this.identifierType = identifierType;
 	}
-	public long getBalance() {
-		return balance;
+	public String getPassword() {
+		return password;
 	}
-	public void setBalance(long balance) {
-		this.balance = balance;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public Date getCreationDate() {
+		if (creationDate == null) {
+			creationDate = new Date();
+		}
+		return creationDate;
+	}
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 	public List<Point> getPoints() {
 		return points;
